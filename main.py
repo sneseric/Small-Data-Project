@@ -17,7 +17,7 @@ api = NewsApiClient(api_key=api_key)
 @app.route('/')
 def index():
     # Fetch headlines for Orlando, FL
-    top_headlines = api.get_everything(q='Orlando', language='en', sort_by='relevancy')
+    top_headlines = api.get_everything(q='Orlando + "Florida"', language='en', sort_by='relevancy')
 
     # Pass articles to template
     return render_template('index.html', articles=top_headlines['articles'])
