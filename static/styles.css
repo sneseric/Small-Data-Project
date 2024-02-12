@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Make the body fill the screen height */
+}
+
+.column {
+    padding: 20px;
+    height: 100%; /* Make columns fill the available height */
+}
+
+.news-column {
+    flex: 75%; /* Allocate 75% of the width */
+    border-right: 2px solid #ccc;
+}
+
+.visualization-column {
+    flex: 25%; /* Allocate 25% of the width */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 0; /* Remove the top margin to align it at the top */
+    align-self: flex-start; /* Align the h1 to the start of the flex container */
+}
+
+h2 {
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+p {
+    font-size: 16px;
+}
+

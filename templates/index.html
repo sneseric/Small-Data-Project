@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orlando Local News</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="column news-column">
+        <h1>Orlando Local News Headlines</h1>
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h2><a href="{{ article['url'] }}" target="_blank">{{ article['title'] }}</a></h2>
+                    <p>{{ article['description'] }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="column visualization-column">
+        <h1>Data Visualization Section</h1>
+        <!-- Data visualization will be implemented here -->
+    </div>
+</body>
+</html>
