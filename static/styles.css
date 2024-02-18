@@ -11,20 +11,21 @@ body {
 }
 
 .news-column {
-    flex: 75%; /* Allocate 75% of the width */
+    flex: 75%; /* Allocate 75% of the width as default */
     border-right: 2px solid #ccc;
 }
 
 .visualization-column {
-    flex: 25%; /* Allocate 25% of the width */
+    flex: 25%; /* Allocate 25% of the width as default */
     display: flex;
     flex-direction: column; /* Stack items vertically */
+    text-align: left !important;
 }
 
 h1 {
     font-size: 24px;
     margin-top: 0; /* Remove the top margin to align it at the top */
-    align-self: flex-start; /* Align the h1 to the start of the flex container */
+    align-self: center; /* or flex-start to align at start of container */
 }
 
 h2 {

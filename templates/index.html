@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="column news-column">
-        <h1>Orlando Local News Headlines</h1>
+        <h1 style="text-align: center;">Orlando Local News Headlines</h1>
         <ul>
             {% for article in articles %}
                 <li>
@@ -19,8 +19,9 @@
         </ul>
     </div>
     <div class="column visualization-column">
-        <h1>Data Visualization Section Coming Soon</h1>
+        <h1 style="text-align: center !important;">News Topic Analysis</h1>
         <!-- Data visualization will be implemented here -->
+        <img src="data:image/png;base64,{{ pie_chart }}" alt="Pie chart">
     </div>
 </body>
 </html>
