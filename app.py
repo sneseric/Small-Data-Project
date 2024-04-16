@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import io
 import base64
+import numpy as np
 
 # Load environment variables from .env file
 load_dotenv()
@@ -27,8 +28,6 @@ def autopct_format(values):
     def my_format(pct):
         return ('%.1f%%' % pct) if pct > 1 else ''
     return my_format
-
-#TODO: Display articles (and matching keywords) for each visualized category on hover
 
 @app.route('/')
 def index():
@@ -85,13 +84,26 @@ def index():
                       len(entertainment_articles), len(school_articles), len(science_technology_articles),
                       other_articles]
 
-    # Do not display labels for categories with less than 1% of the total
-    # Calculate percentages for each category
-    percentages = [count / sum(articles_count) * 100 for count in articles_count]
     # Create labels for categories with more than 1% of the total
-    labels = [category if percentage > 1 else '' for category, percentage in zip(categories, percentages)]
+    labels = [category if count / sum(articles_count) * 100 > 1 else '' for category, count in zip(categories, articles_count)]
 
-    plt.pie(articles_count, labels=labels, autopct=autopct_format(articles_count))
+    # Create the pie chart with autopct labels
+    wedges, texts, autotexts = plt.pie(articles_count, labels=labels, autopct=autopct_format(articles_count))
+
+    # For each autopct label (every third label), set the rotation to 'vertical'
+    #for autotext in autotexts:
+        #autotext.set_rotation('vertical')
+
+    # For each autopct label, set the rotation to 'vertical' if the percentage is 5% or less
+    for autotext in autotexts:
+        try:
+            pct = float(autotext.get_text().strip('%'))  # Get the percentage as a float
+            if pct <= 5.0:  # Check if the percentage is 5% or less
+                autotext.set_rotation('vertical')
+        except ValueError:
+            # Skip rotation if the label text cannot be converted to a float
+            continue
+
     plt.title('Article Categories')
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
